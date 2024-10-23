@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Tarea } from '../../interfaces/tarea.interface';
 import { AddTareaComponent } from '../add-tarea/add-tarea.component';
+import { TareaService } from '../../service/tarea.service';
 
 @Component({
   selector: 'app-list-tarea',
@@ -9,10 +10,29 @@ import { AddTareaComponent } from '../add-tarea/add-tarea.component';
   templateUrl: './list-tarea.component.html',
   styleUrl: './list-tarea.component.css'
 })
-export class ListTareaComponent {
+export class ListTareaComponent implements OnInit {
+
+  tareaService = inject(TareaService)
+
+  ngOnInit(): void {
+    this.listarTareas()
+  }
 
   listTarea: Tarea[]=[];
 
+
+  listarTareas(){
+    this.tareaService.getTareas().subscribe(
+      {
+        next: (tareas: Tarea[]) => {
+          this.listTarea = tareas
+        },
+        error: (e: Error) => {
+          console.log(e.message);
+        }
+      }
+    )
+  }
 
   recibiendoTarea(tarea: Tarea){
     this.listTarea.push({...tarea})

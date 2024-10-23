@@ -3,6 +3,10 @@
     {
       "id": 3,
       "nombre": "mi primer tarea json server"
+    },
+    {
+      "nombre": "segunda tarea",
+      "id": 2
     }
   ]
 }
