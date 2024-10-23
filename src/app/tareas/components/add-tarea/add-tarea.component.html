@@ -1,0 +1,20 @@
+<form [formGroup]="formulario" (ngSubmit)="emitiendoTarea()">
+  <label for="idTarea">Id: </label>
+  <input type="number" formControlName="id" />
+
+  @if (formulario.controls['id'].getError('required') &&
+  formulario.controls['id'].touched) {
+  <div>el id es requerido</div>
+  }
+  <label for="">Tarea: </label>
+  <input type="text" formControlName="nombre" />
+
+  @if (formulario.controls['nombre'].getError('required') &&
+  formulario.controls['nombre'].touched) {
+  <div>el nombre es requerido</div>
+  } @if (formulario.controls['nombre'].getError('minlength')){
+  <div>el nombre de la tarea tiene un mínimo de 3 carácteres</div>
+  }
+
+  <button type="submit">Add Tarea</button>
+</form>

@@ -1,0 +1,8 @@
+<app-add-tarea (tareaEmit)="recibiendoTarea($event)"></app-add-tarea>
+<section>
+  <ul>
+    @for (item of listTarea; track $index) {
+      <li>Id: {{item.id}} - Tarea: {{item.nombre}}</li>
+    }
+  </ul>
+</section>
